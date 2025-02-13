@@ -25,7 +25,7 @@ class Configuration(BaseModel):
     """The configurable fields for the research assistant."""
 
     max_web_research_loops: int = 3
-    local_llm: str = "llama-3.3-70b"
+    local_llm: str = "gpt-4o-mini"
     search_api: SearchAPI = SearchAPI.TAVILY
 
     @classmethod
@@ -46,11 +46,11 @@ query_writer_instructions = """As a research query generator, create a targeted 
 Your goal is to formulate a precise query that will yield relevant, high-quality information about this topic.
 
 Example output:
-{
+{{
     "query": "machine learning transformer architecture explained",
     "aspect": "technical architecture",
     "rationale": "Understanding the fundamental structure of transformer models"
-}
+}}
 
 Generate your query now:"""
 
@@ -78,10 +78,10 @@ Focus on:
 • Practical applications or implications not discussed
 
 Example output:
-{
+{{
     "knowledge_gap": "The summary lacks information about performance metrics and benchmarks",
     "follow_up_query": "What are typical performance benchmarks and metrics used to evaluate [specific technology]?"
-}
+}}
 
 Analyze the current summary and provide your insights:"""
 

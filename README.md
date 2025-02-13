@@ -1,12 +1,14 @@
-# Deep Researcher
+# Minimal Deep Research
 
-A command-line tool for performing deep research on a topic using a large language model (LLM) and web search APIs.
+A minimal Gemini/OpenAI-inspired implementation of Deep Research using structured outputs with LangChain, an LLM provider, and a web search API.
+
+Any OpenAI-compatible LLM provider can be used in this repository by specifying the corresponding `.env` variables, including running local models with Ollama.
 
 ## Overview
 
-Deep Researcher leverages an LLM and web search (using either Tavily or Perplexity) to generate targeted search queries, gather data from the web, and summarize the findings. The tool is designed to simplify the research process with a clean, class-based structure. The main functionality is encapsulated in the `DeepResearcher` class.
+Deep Research leverages an LLM and web search (using either Tavily or Perplexity) to generate targeted search queries, gather data from the web, and summarize the findings. The tool is designed to simplify the research process with a clean, class-based structure. The main functionality is encapsulated in the `DeepResearcher` class.
 
-## Features
+## Steps
 
 - **Automated Query Generation:** Uses an LLM to generate a search query from a research topic.
 - **Web Research:** Retrieves relevant web search results using a configurable API (Tavily or Perplexity).
@@ -19,15 +21,16 @@ Deep Researcher leverages an LLM and web search (using either Tavily or Perplexi
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/charlesnchr/langgraph-deep-research.git
+   git clone https://github.com/charlesnchr/langgraph-deep-research
    cd langgraph-deep-research
    ```
 
-2. Create a virtual environment and activate it:
+2. Create a virtual environment and install dependencies:
 
    ```bash
-   uv venv
-   uv pip install -r requirements.txt
+   python -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
    ```
 
 3. Set up your environment variables:
@@ -39,13 +42,13 @@ Deep Researcher leverages an LLM and web search (using either Tavily or Perplexi
 Run the research assistant using the command line. The tool accepts the research topic and optional parameters such as maximum loops, LLM model, and search API.
 
 ```bash
-python standalone_deep_researcher.py "<research-topic>" [--max-loops <number>] [--llm-model <model-name>] [--search-api <tavily|perplexity>]
+python deep_research.py "<research-topic>" [--max-loops <number>] [--llm-model <model-name>] [--search-api <tavily|perplexity>]
 ```
 
 ### Example
 
 ```bash
-python standalone_deep_researcher.py "Deep Learning" --max-loops 3 --llm-model "llama-3.3-70b" --search-api tavily
+python deep_research.py "What are recent advances in quantum computing?" --max-loops 3 --llm-model "gpt-4o" --search-api tavily
 ```
 
 ## Configuration
@@ -56,3 +59,13 @@ Configuration options can be set via command-line arguments:
 - **--max-loops:** Maximum number of research iterations (default: 3).
 - **--llm-model:** Name of the LLM model to use (default: llama-3.3-70b).
 - **--search-api:** Choose between "tavily" or "perplexity" for web search (default: tavily).
+
+## Acknowledgements
+
+This repository was inspired by:
+
+- [ollama-deep-researcher](https://github.com/langchain-ai/ollama-deep-researcher)
+
+The main selling point of this repository is that it is lighter and simpler to build upon. It has a straightforward main loop in `deep_research.py`, which does not rely on LangGraph, nor is it necessary to run a LangGraph server to start the execution.
+
+Ollama could equally be used in this repository by specifying corresponding `.env` variables.
