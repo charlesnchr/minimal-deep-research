@@ -21,8 +21,8 @@ Deep Research leverages an LLM and web search (using either Tavily or Perplexity
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/charlesnchr/langgraph-deep-research
-   cd langgraph-deep-research
+   git clone https://github.com/charlesnchr/minimal-deep-research
+   cd minimal-deep-research
    ```
 
 2. Create a virtual environment and install dependencies:
@@ -42,13 +42,13 @@ Deep Research leverages an LLM and web search (using either Tavily or Perplexity
 Run the research assistant using the command line. The tool accepts the research topic and optional parameters such as maximum loops, LLM model, and search API.
 
 ```bash
-python deep_research.py "<research-topic>" [--max-loops <number>] [--llm-model <model-name>] [--search-api <tavily|perplexity>]
+python deep_research.py "<research-topic>" [--max-loops <number>] [--model-id <model-name>] [--search-api <tavily|perplexity>]
 ```
 
 ### Example
 
 ```bash
-python deep_research.py "What are recent advances in quantum computing?" --max-loops 3 --llm-model "gpt-4o" --search-api tavily
+python deep_research.py "What are recent advances in quantum computing?" --max-loops 3 --model-id "gpt-4o" --search-api tavily
 ```
 
 ## Configuration
@@ -57,7 +57,7 @@ Configuration options can be set via command-line arguments:
 
 - **topic:** The research topic to investigate.
 - **--max-loops:** Maximum number of research iterations (default: 3).
-- **--llm-model:** Name of the LLM model to use (default: llama-3.3-70b).
+- **--model-id:** Name of the LLM model to use (default: llama-3.3-70b).
 - **--search-api:** Choose between "tavily" or "perplexity" for web search (default: tavily).
 
 ## Acknowledgements
