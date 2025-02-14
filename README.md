@@ -2,72 +2,60 @@
 
 A minimal Gemini/OpenAI-inspired implementation of Deep Research using structured outputs with LangChain, an LLM provider, and a web search API.
 
-Any OpenAI-compatible LLM provider can be used in this repository by specifying the corresponding `.env` variables. This includes local models with Ollama, or the Gemini 2.0 models, such as in the demo below.
+Want to try it out? You can use any OpenAI-compatible LLM - whether that's a local model through Ollama or cloud options like Gemini 2.0 (shown in the demo below).
 
 https://github.com/user-attachments/assets/df48ec08-2fea-4131-879d-22a282969f44
 
-## Overview
+## What's This?
 
-Deep Research leverages an LLM and web search (using either Tavily or Perplexity) to generate targeted search queries, gather data from the web, and summarize the findings. The tool is designed to simplify the research process with a clean, class-based structure. The main functionality is encapsulated in the `DeepResearcher` class.
+Deep Research combines the power of LLMs with web search (via Tavily or Perplexity) to do what researchers do: ask good questions, gather information, and synthesize findings. But instead of taking hours, it takes minutes.
 
-## Steps
+The core functionality resides in the `DeepResearcher` class, which:
+- Crafts smart search queries based on your research topic
+- Scours the web for relevant information
+- Summarizes what it finds
+- Identifies gaps and digs deeper
+- Pulls everything together into a clear final report
 
-- **Automated Query Generation:** Uses an LLM to generate a search query from a research topic.
-- **Web Research:** Retrieves relevant web search results using a configurable API (Tavily or Perplexity).
-- **Summarization:** Summarizes the gathered sources into a concise report.
-- **Reflection:** Generates follow-up queries based on the summary to refine the research.
-- **Final Summary:** Consolidates all information and sources into a final formatted summary.
+## Getting Started
 
-## Installation
-
-1. Clone the repository:
-
+1. Grab the code:
    ```bash
    git clone https://github.com/charlesnchr/minimal-deep-research
    cd minimal-deep-research
    ```
 
-2. Create a virtual environment and install dependencies:
-
+2. Set up your environment:
    ```bash
    python -m venv venv
    source venv/bin/activate
    pip install -r requirements.txt
    ```
 
-3. Set up your environment variables:
+3. Add your API keys:
+   Create a `.env` file in the root directory and add your keys (e.g., PERPLEXITY_API_KEY)
 
-   Create a `.env` file in the project root and add any necessary API keys (e.g., PERPLEXITY_API_KEY).
+## How to Use It
 
-## Usage
-
-Run the research assistant using the command line. The tool accepts the research topic and optional parameters such as maximum loops, LLM model, and search API.
-
+Basic usage is straightforward:
 ```bash
-python deep_research.py "<research-topic>" [--max-loops <number>] [--model-id <model-name>] [--search-api <tavily|perplexity>]
+python deep_research.py "Your research question here"
 ```
 
-### Example
-
+To use some of the optional command-line arguments:
 ```bash
-python deep_research.py "What are recent advances in quantum computing?" --max-loops 3 --model-id "gpt-4o" --search-api tavily
+python deep_research.py "What are recent advances in quantum computing?" \
+    --max-loops 10 \
+    --model-id "o3-mini" \
+    --search-api tavily
 ```
 
-## Configuration
+### Configuration Options
 
-Configuration options can be set via command-line arguments:
-
-- **topic:** The research topic to investigate.
-- **--max-loops:** Maximum number of research iterations (default: 3).
-- **--model-id:** Name of the LLM model to use (default: llama-3.3-70b).
-- **--search-api:** Choose between "tavily" or "perplexity" for web search (default: tavily).
+- **topic:** The research topic to investigate
+- **--max-loops:** How many research iterations to run (default: 3)
+- **--model-id:** Which LLM to use (default: llama-3.3-70b)
+- **--search-api:** Pick your search provider - "tavily" or "perplexity" (default: tavily)
 
 ## Acknowledgements
-
-This repository was inspired by:
-
-- [ollama-deep-researcher](https://github.com/langchain-ai/ollama-deep-researcher)
-
-The main selling point of this repository is that it is lighter and simpler to build upon. It has a straightforward main loop in `deep_research.py`, which does not rely on LangGraph, nor is it necessary to run a LangGraph server to start the execution.
-
-Ollama could equally be used in this repository by specifying corresponding `.env` variables.
+This was inspired by [ollama-deep-researcher](https://github.com/langchain-ai/ollama-deep-researcher), but with a focus on simplicity. The core logic lives in a clean `deep_research.py` file - no LangGraph topology, nor the LangGraph server required to run it, instead relying on a simple main loop and the `deep_research.py` as an entrypoint.
