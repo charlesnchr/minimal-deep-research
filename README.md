@@ -2,7 +2,9 @@
 
 A minimal Gemini/OpenAI-inspired implementation of Deep Research using structured outputs with LangChain, an LLM provider, and a web search API.
 
-Any OpenAI-compatible LLM provider can be used in this repository by specifying the corresponding `.env` variables, including running local models with Ollama.
+Any OpenAI-compatible LLM provider can be used in this repository by specifying the corresponding `.env` variables. This includes local models with Ollama, or the Gemini 2.0 models, such as in the demo below.
+
+https://github.com/user-attachments/assets/df48ec08-2fea-4131-879d-22a282969f44
 
 ## Overview
 
